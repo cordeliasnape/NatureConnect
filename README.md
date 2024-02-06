@@ -28,6 +28,7 @@ This app uses:
 1. Express
 2. Dotenv
 3. Cors
+4. Better SQLite 3
 
 ## APIs
 
