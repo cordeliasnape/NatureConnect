@@ -14,7 +14,7 @@ This application aims to give users a centralised platform to easily access info
 - Moon phase
 - Seasonal information, such as:
   - Wild plants in season
-  - Best fruit and vegetables to by based on season and, potentially, locality
+  - Best fruit and vegetables to buy based on season and, potentially, locality
 - Weather information, such as:
   - Local weather forecast
   - Historical forecast information, opening up the opportunity to show how climate change might be affecting your local area
