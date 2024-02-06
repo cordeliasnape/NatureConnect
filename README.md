@@ -1,6 +1,6 @@
 # NatureConnect
 
-## _Rediscover Your Roots_
+### Rediscover Your Roots
 
 ## Introduction
 
@@ -32,7 +32,7 @@ This app uses:
 ## APIs
 
 1. Sunrise Sunset - [View here](https://sunrise-sunset.org/api)
-2. Example
+2. LocationIQ
 
 ## Update Version
 
