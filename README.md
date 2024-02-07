@@ -1,10 +1,10 @@
-# NatureConnect
+# Outdoorsy
 
 ### Rediscover Your Roots
 
 ## Introduction
 
-Welcome to NatureConnect! A nature companion app designed to reconnect you with the world around us using APIs.
+Welcome to Outdoorsy! A nature companion app designed to reconnect you with the world around us using APIs.
 
 ## Goals
 
