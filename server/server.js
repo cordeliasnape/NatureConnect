@@ -17,9 +17,10 @@ app.get("/", (req, res) => {
 
 app.get("/location", async (req, res) => {
   //handle request
-  const { location } = request.query;
+  const { locationInput } = req.query;
+  console.log(locationInput);
   //retrieve URLs
-  const API_Location = `https://eu1.locationiq.com/v1/search?q=liverpool&key=${process.env.LOCATION_KEY}&format=json`;
+  const API_Location = `https://eu1.locationiq.com/v1/search?q=${locationInput}&key=${process.env.LOCATION_KEY}&format=json`;
   // console.log(API_Location);
   let locationData = await axios.get(API_Location);
 
