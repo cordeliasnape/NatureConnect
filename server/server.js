@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import "dotenv/config";
+import axios from "axios";
 // import Database from "better-sqlite3";
 
 const PORT = "1998";
@@ -16,14 +17,18 @@ app.get("/", (req, res) => {
 
 app.get("/location", async (req, res) => {
   //handle request
-  // const { location } = request.query;
+  const { location } = request.query;
   //retrieve URLs
   const API_Location = `https://eu1.locationiq.com/v1/search?q=liverpool&key=${process.env.LOCATION_KEY}&format=json`;
   // console.log(API_Location);
+  let locationData = await axios.get(API_Location);
 
-  //get lat, long ad more relevant data from api
-  //wrangle data
-  //response.json(wrangledData);
+  const wrangledLocationData = {
+    latitude: locationData.data[0].lat,
+    longitude: locationData.data[0].lon,
+  };
+
+  res.json(wrangledLocationData);
 });
 
 //use location data for everything else

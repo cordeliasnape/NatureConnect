@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
+import axios from "axios";
 
 function App() {
+  const localServer = `http://localhost:1998`;
+
   const [locationInput, setLocationInput] = useState("");
+
+  //handle location
 
   const handleLocationInputChange = (event) => {
     setLocationInput(event.target.value);
@@ -10,8 +15,16 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // await handleLocation(event);
     console.log("Location input:", locationInput);
   };
+
+  // async function handleLocation(event) {
+  //   event.preventDefault();
+
+  //   const API = `${localServer}/location`;
+  //   const res = await axios.get(API);
+  // }
 
   return (
     <main>
