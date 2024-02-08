@@ -7,6 +7,7 @@ function App() {
   const [locationInput, setLocationInput] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [mapImage, setMapImage] = useState("");
 
   //handle location
 
@@ -27,9 +28,11 @@ function App() {
     const API = `${localServer}/location?locationInput=${locationInput}`;
     const res = await axios.get(API);
 
-    setLatitude(res.data.latitude);
-    setLongitude(res.data.longitude);
+    setLatitude(res.data.wrangledLocationData.latitude);
+    setLongitude(res.data.wrangledLocationData.longitude);
+    setMapImage(res.data.API_Map);
 
+    // console.log(res.data.mapData);
     console.log(latitude, longitude);
   }
 
@@ -46,6 +49,7 @@ function App() {
         />
         <button type="submit">Go!</button>
       </form>
+      <img src={mapImage} />
     </main>
   );
 }

@@ -17,19 +17,25 @@ app.get("/", (req, res) => {
 
 app.get("/location", async (req, res) => {
   //handle request
+
   const { locationInput } = req.query;
-  console.log(locationInput);
+  // console.log(locationInput);
   //retrieve URLs
   const API_Location = `https://eu1.locationiq.com/v1/search?q=${locationInput}&key=${process.env.LOCATION_KEY}&format=json`;
-  // console.log(API_Location);
-  let locationData = await axios.get(API_Location);
 
+  let locationData = await axios.get(API_Location);
   const wrangledLocationData = {
     latitude: locationData.data[0].lat,
     longitude: locationData.data[0].lon,
   };
 
-  res.json(wrangledLocationData);
+  // console.log(wrangledLocationData.latitude);
+
+  const API_Map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${wrangledLocationData.latitude},${wrangledLocationData.longitude}&zoom=14&size=200px200px&maptype=light`;
+
+  // let mapData = await axios.get(API_Map);
+
+  res.status(200).json({ wrangledLocationData, API_Map });
 });
 
 //use location data for everything else
