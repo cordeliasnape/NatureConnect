@@ -8,20 +8,16 @@ function App() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [mapImage, setMapImage] = useState("");
+  const [sunriseToday, setSunriseToday] = useState("");
+  const [sunsetToday, setSunsetToday] = useState("");
 
   //handle location
-
   const handleLocationInputChange = (event) => {
     setLocationInput(event.target.value);
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //    await handleLocation(event);
-  // };
-
-  //get info from location inc lat and lon
-  async function handleLocation(event) {
+  // handle Location and Sun APIs
+  async function handleAPIData(event) {
     event.preventDefault();
     console.log("Location input:", locationInput);
 
@@ -31,6 +27,8 @@ function App() {
     setLatitude(res.data.wrangledLocationData.latitude);
     setLongitude(res.data.wrangledLocationData.longitude);
     setMapImage(res.data.API_Map);
+    setSunriseToday(res.data.suntimesToday.sunrise);
+    setSunsetToday(res.data.suntimesToday.sunset);
 
     // console.log(res.data.mapData);
     console.log(latitude, longitude);
@@ -39,7 +37,7 @@ function App() {
   return (
     <main>
       <h1>NatureConnect</h1>
-      <form onSubmit={handleLocation}>
+      <form onSubmit={handleAPIData}>
         <label htmlFor="locationInputID">What's your location?</label>
         <input
           type="text"
@@ -50,6 +48,12 @@ function App() {
         <button type="submit">Go!</button>
       </form>
       <img src={mapImage} />
+      {locationInput ? (
+        <div>
+          <p>Sunrise : {sunriseToday}</p>
+          <p>Sunset : {sunsetToday}</p>
+        </div>
+      ) : null}
     </main>
   );
 }

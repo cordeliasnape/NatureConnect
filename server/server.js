@@ -16,39 +16,31 @@ app.get("/", (req, res) => {
 });
 
 app.get("/location", async (req, res) => {
-  //handle request
-
   const { locationInput } = req.query;
-  // console.log(locationInput);
-  //retrieve URLs
+
   const API_Location = `https://eu1.locationiq.com/v1/search?q=${locationInput}&key=${process.env.LOCATION_KEY}&format=json`;
 
   let locationData = await axios.get(API_Location);
+
   const wrangledLocationData = {
     latitude: locationData.data[0].lat,
     longitude: locationData.data[0].lon,
   };
 
-  // console.log(wrangledLocationData.latitude);
+  const API_Map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${wrangledLocationData.latitude},${wrangledLocationData.longitude}&zoom=14&size=100px100px&maptype=light`;
 
-  const API_Map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${wrangledLocationData.latitude},${wrangledLocationData.longitude}&zoom=14&size=200px200px&maptype=light`;
+  const API_SUNTIMES = `https://api.sunrise-sunset.org/json?lat=${wrangledLocationData.latitude}&lng=${wrangledLocationData.longitude}&date=today`;
 
-  // let mapData = await axios.get(API_Map);
+  let sunTimeData = await axios.get(API_SUNTIMES);
 
-  res.status(200).json({ wrangledLocationData, API_Map });
+  // console.log(sunTimeData.data.results);
+
+  res.status(200).json({
+    wrangledLocationData,
+    API_Map,
+    suntimesToday: sunTimeData.data.results,
+  });
 });
-
-//use location data for everything else
-// const SUNTIMES_URL =
-//   "https://api.sunrise-sunset.org/json?lat=53.408371&lng=-2.991573&date=today";
-
-//   const res = await fetch(SUNTIMES_URL);
-//   const sunData = await res.json();
-
-//   return NextResponse.json(sunData.results);
-// }
-
-// listen
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
