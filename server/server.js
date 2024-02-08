@@ -29,9 +29,9 @@ app.get("/location", async (req, res) => {
 
   const API_Map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${wrangledLocationData.latitude},${wrangledLocationData.longitude}&zoom=14&size=200px200px&maptype=light`;
 
-  const API_SUNTIMES = `https://api.sunrise-sunset.org/json?lat=${wrangledLocationData.latitude}&lng=${wrangledLocationData.longitude}&date=today`;
+  const API_SuntimesToday = `https://api.sunrise-sunset.org/json?lat=${wrangledLocationData.latitude}&lng=${wrangledLocationData.longitude}&date=today`;
 
-  let sunTimeData = await axios.get(API_SUNTIMES);
+  let sunTimeData = await axios.get(API_SuntimesToday);
 
   // console.log(sunTimeData.data.results);
 

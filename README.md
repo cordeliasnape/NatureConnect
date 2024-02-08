@@ -32,8 +32,8 @@ This app uses:
 
 ## APIs
 
-1. Sunrise Sunset - [View here](https://sunrise-sunset.org/api)
-2. LocationIQ
+1. LocationIQ - [View Here](https://locationiq.com/)
+2. Sunrise Sunset - [View here](https://sunrise-sunset.org/api)
 
 ## Update Version
 
