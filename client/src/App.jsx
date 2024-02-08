@@ -30,8 +30,7 @@ function App() {
     setSunriseToday(res.data.suntimesToday.sunrise);
     setSunsetToday(res.data.suntimesToday.sunset);
 
-    // console.log(res.data.mapData);
-    console.log(latitude, longitude);
+    // console.log(latitude, longitude);
   }
 
   return (
@@ -47,8 +46,12 @@ function App() {
         />
         <button type="submit">Go!</button>
       </form>
-      <img src={mapImage} />
-      {locationInput ? (
+      {latitude ? (
+        <div className="map img-wrap">
+          <img className="map" src={mapImage} />
+        </div>
+      ) : null}
+      {latitude ? (
         <div>
           <p>Sunrise : {sunriseToday}</p>
           <p>Sunset : {sunsetToday}</p>
